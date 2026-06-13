@@ -20,9 +20,9 @@ A retail company wants to better understand how customers shop across demographi
 - `notebooks/customer_shopping_behavior_analysis.ipynb` - Python data cleaning and analysis
 - `sql/customer_behavior_sql_queries.sql` - SQL queries for business insights
 - `powerbi/customer_behavior_dashboard.pbix` - Power BI dashboard
-- `reports/Business_Problem_Document.pdf` - Business problem document
-- `reports/Customer_Shopping_Behavior_Analysis_Report.pdf` - Final analysis report
-- `presentation/Customer_Shopping_Behavior_Analysis.pptx` - Project presentation
+- `reports/Business Problem Document.pdf` - Business problem document
+- `reports/Customer Shopping Behavior Analysis.pdf` - Final analysis report
+- `presentation/Customer-Shopping-Behavior-Analysis.pptx` - Project presentation
 
 ## Key Analysis Areas
 - Customer demographics
