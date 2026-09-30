@@ -1,46 +1,106 @@
+# Customer Shopping Behavior Analytics
 
-# Customer Shopping Behavior Analysis
+**End-to-end retail analytics portfolio project using Python, SQL and Power BI.**
 
-## Project Overview
-This project analyzes customer shopping behavior using a dataset of 3,900 purchases across different product categories. The goal is to identify customer trends, spending patterns, product preferences, subscription behavior, and business insights that can help improve marketing, customer engagement, and sales strategy.
+## Executive Summary
 
-## Business Problem
-A retail company wants to better understand how customers shop across demographics, product categories, discounts, seasons, payment preferences, and subscription status. This analysis helps the company make data-driven decisions for customer retention, product positioning, and marketing optimization.
+This project analyses **3,900 customer purchases** to understand how customers shop across demographics, product categories, discounts, seasons, payment methods, shipping preferences and subscription status.
 
-## Tools Used
-- Python
-- Pandas
-- SQL
-- Power BI
-- Jupyter Notebook
-- GitHub
+The goal is not only to explore the dataset, but to demonstrate a practical **Data Analyst workflow**: define business questions, clean the data, analyse it with Python and SQL, visualise the results in Power BI, and translate findings into business recommendations.
 
-## Project Files
-- `data/customer_shopping_behavior.csv` - Raw dataset
-- `notebooks/customer_shopping_behavior_analysis.ipynb` - Python data cleaning and analysis
-- `sql/customer_behavior_sql_queries.sql` - SQL queries for business insights
-- `powerbi/customer_behavior_dashboard.pbix` - Power BI dashboard
-- `reports/Business Problem Document.pdf` - Business problem document
-- `reports/Customer Shopping Behavior Analysis.pdf` - Final analysis report
-- `presentation/Customer-Shopping-Behavior-Analysis.pptx` - Project presentation
+## Analyst Skills Demonstrated
 
-## Key Analysis Areas
+- Data cleaning and transformation with **Python / pandas**
+- Exploratory data analysis
+- Business-focused **SQL** analysis
+- Aggregations, subqueries, CTEs, CASE expressions and window functions
+- KPI design and interactive reporting in **Power BI**
+- Customer segmentation
+- Commercial interpretation and recommendation writing
+- Reproducible project organisation with Git and GitHub
+
+## Business Questions
+
+The analysis investigates questions such as:
+
+- Which product categories contribute the most revenue?
+- How does purchasing behaviour differ across demographic groups?
+- How do discounts and promotional codes relate to purchasing patterns?
+- What differences exist between subscribers and non-subscribers?
+- Which customer segments appear most valuable?
+- Which products are highly rated or frequently purchased?
+- How do season, shipping preference and payment method relate to customer behaviour?
+
+## Workflow
+
+```text
+Raw customer dataset
+        ↓
+Python / pandas cleaning
+        ↓
+Exploratory analysis
+        ↓
+SQL business analysis
+        ↓
+Power BI dashboard
+        ↓
+Business recommendations
+```
+
+## Tools
+
+| Area | Technologies |
+|---|---|
+| Analysis | Python, pandas, NumPy |
+| Querying | SQL |
+| Visualisation | Power BI, Matplotlib / Seaborn |
+| Development | Jupyter Notebook, Git, GitHub |
+
+## Analysis Areas
+
 - Customer demographics
-- Revenue by gender
-- Product category performance
-- Discount and promo behavior
-- Subscription impact
+- Revenue by gender and age group
+- Product and category performance
+- Discount and promo behaviour
+- Subscription behaviour
 - Shipping preferences
 - Customer segmentation
-- Revenue by age group
-- Top-rated and best-selling products
+- Review ratings
+- Best-selling products
 
-## Dashboard
-The Power BI dashboard presents key metrics such as total customers, average purchase amount, average review rating, revenue by category, sales by age group, and customer subscription status.
+## Deliverables
+
+- `notebooks/customer_shopping_behavior_analysis.ipynb` — Python cleaning and analysis
+- `sql/customer_behavior_sql_queries.sql` — SQL business analysis
+- `powerbi/customer_behavior_dashboard.pbix` — interactive Power BI report
+- `reports/Business Problem Document.pdf` — business context
+- `reports/Customer Shopping Behavior Analysis.pdf` — final analysis
+- `presentation/Customer-Shopping-Behavior-Analysis.pptx` — presentation
 
 ## Business Recommendations
-- Improve subscription offers to increase customer loyalty
-- Create loyalty programs for repeat buyers
-- Highlight top-rated and best-selling products in campaigns
-- Use targeted marketing for high-revenue customer segments
-- Review discount strategy to balance revenue and profitability
+
+The project translates analytical findings into actions around:
+
+- customer retention and subscription offers
+- loyalty programmes for repeat customers
+- targeted marketing for valuable customer segments
+- promotion of strong products and categories
+- reviewing discount strategy alongside revenue performance
+
+## Why This Project Matters
+
+This project demonstrates my ability to move from a business problem to a structured analytical solution rather than stopping at charts or code. It combines **data preparation, SQL, dashboarding and business communication** — the core workflow expected in many Data Analyst and BI roles.
+
+## Repository Structure
+
+```text
+customer-behavior-analytics-project/
+├── data/
+├── notebooks/
+├── sql/
+├── powerbi/
+├── reports/
+├── presentation/
+├── requirements.txt
+└── README.md
+```
