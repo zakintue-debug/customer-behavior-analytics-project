@@ -104,3 +104,11 @@ customer-behavior-analytics-project/
 ├── requirements.txt
 └── README.md
 ```
+
+## Database configuration and interpretation
+
+Run the notebook from the repository root so the data path resolves. Before the database cell, set CUSTOMER_DB_PASSWORD in your process environment; optional settings are CUSTOMER_DB_USER, CUSTOMER_DB_HOST, CUSTOMER_DB_PORT and CUSTOMER_DB_NAME. Do not commit credentials. The database cell uses if_exists="replace" and overwrites the destination table; choose a disposable analysis database.
+
+The current notebook no longer embeds a password. Removing it from the latest version does not remove historical Git commits: rotate the former password if it was real or reused.
+
+Age segments use sample quantiles, not fixed demographic age bands. Category-median imputation is used for missing review ratings. Discount/subscription associations are descriptive and do not demonstrate causal revenue uplift.
