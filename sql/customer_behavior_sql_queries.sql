@@ -1,6 +1,4 @@
-CREATE database mydatabase;
-USE mydatabase;
-
+-- MySQL 8. Select the database populated by the notebook before running this file.
 SHOW TABLES;
 
 SELECT * 
@@ -75,56 +73,58 @@ ORDER BY discount_rate DESC
 LIMIT 5;
 
 
--- Q7. Segment customers into New, Returning, and Loyal.
-
-WITH customer_type AS (
-    SELECT customer_id,
-           previous_purchases,
-           CASE
+-- Q7. Segment purchase records by the number of previous purchases.
+-- The source has one row per customer ID. Counts remain labelled as records.
+WITH segments AS (
+    SELECT CASE
+               WHEN previous_purchases IS NULL OR previous_purchases < 0 THEN 'Unknown'
                WHEN previous_purchases <= 1 THEN 'New'
-               WHEN previous_purchases BETWEEN 2 AND 10 THEN 'Returning'
+               WHEN previous_purchases <= 10 THEN 'Returning'
                ELSE 'Loyal'
            END AS customer_segment
     FROM mytable
 )
+SELECT customer_segment, COUNT(*) AS purchase_records
+FROM segments
+GROUP BY customer_segment
+ORDER BY customer_segment;
 
-SELECT customer_segment,
-       COUNT(*) AS number_of_customers
-FROM customer_type
-GROUP BY customer_segment;
-
-
--- Q8. What are the top 3 most purchased products within each category?
-
-WITH item_counts AS (
-    SELECT category,
-           item_purchased,
-           COUNT(customer_id) AS total_orders,
+-- Q8. Return up to three products per category. More purchase records rank first.
+-- Equal counts are resolved by ascending product name within the category.
+WITH ranked_items AS (
+    SELECT category, item_purchased, COUNT(*) AS purchase_records,
            ROW_NUMBER() OVER (
-               PARTITION BY category
-               ORDER BY COUNT(customer_id) DESC
+               PARTITION BY category ORDER BY COUNT(*) DESC, item_purchased ASC
            ) AS item_rank
     FROM mytable
     GROUP BY category, item_purchased
 )
-
-SELECT item_rank,
-       category,
-       item_purchased,
-       total_orders
-FROM item_counts
+SELECT item_rank, category, item_purchased, purchase_records
+FROM ranked_items
 WHERE item_rank <= 3
 ORDER BY category, item_rank;
 
-
--- Q9. Are repeat buyers also likely to subscribe?
-
-SELECT subscription_status,
-       COUNT(customer_id) AS repeat_buyers
-FROM mytable
-WHERE previous_purchases > 5
-GROUP BY subscription_status;
-
+-- Q9. What share of each purchase-history group is subscribed?
+-- Divide Yes by known Yes/No responses within each group. This is descriptive.
+WITH grouped AS (
+    SELECT CASE
+               WHEN previous_purchases IS NULL OR previous_purchases < 0 THEN 'Unknown'
+               WHEN previous_purchases > 5 THEN 'Repeat'
+               ELSE 'Non-repeat'
+           END AS buyer_group, subscription_status
+    FROM mytable
+), counts AS (
+    SELECT buyer_group, COUNT(*) AS purchase_records,
+           COUNT(CASE WHEN subscription_status = 'Yes' THEN 1 END) AS subscribed,
+           COUNT(CASE WHEN subscription_status IN ('Yes', 'No') THEN 1 END) AS known_status
+    FROM grouped
+    GROUP BY buyer_group
+)
+SELECT buyer_group, purchase_records, subscribed, known_status,
+       purchase_records - known_status AS unknown_status,
+       ROUND(100.0 * subscribed / NULLIF(known_status, 0), 2) AS subscribed_pct
+FROM counts
+ORDER BY buyer_group;
 
 -- Q10. What is the revenue contribution of each age group?
 
